@@ -19,7 +19,16 @@ function App() {
   }, [])
   return (
     <div className="App">
-      
+      {user?.map((person, index) => {
+        return(
+          <div className='user-container' key={index}>
+            <div className='header-container'>
+              <img src={person.picture.large} alt="person pic"/>
+              <p className="header-title" >{person.name.first} {person.name.last}</p>
+            </div>
+          </div>
+        )
+      })}
     </div>
   );
 }
