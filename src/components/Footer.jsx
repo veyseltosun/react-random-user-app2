@@ -1,9 +1,27 @@
 import React from 'react'
 import "./Footer.css";
+import designSvg from "../assets/design.svg";
 
 function Footer() {
   return (
-    <div>Footer</div>
+  
+      <div className="footer-div">
+        <a
+          href="https://github.com/veyseltosun"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          <code className="brand">{"<veyo/> "}</code>
+        </a>
+        <img
+          src={designSvg}
+          alt="design"
+          style={{ width: "40px", margin: "0  25px 0 10px" }}
+        />
+        <span>design</span>
+     
+    </div>
   )
 }
 
