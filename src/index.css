@@ -121,8 +121,8 @@ p {
   min-width: 300px;
   max-width: 730px;
   background: var(--clr-white);
-  margin: 0 auto;
-  margin-top: -200px;
+  margin: 0 auto ;
+  margin-top: -160px;
   border-radius: var(--radius);
   position: relative;
   text-align: center;
@@ -193,7 +193,7 @@ p {
 
 #cw {
   width: 75px;
-  margin-top: 50px;
+  margin-top: 7px;
 }
 
 .btn-group {
