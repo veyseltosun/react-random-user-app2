@@ -69,23 +69,145 @@ function App() {
   useEffect(() => {
     getUser()
   }, [])
+
+  const handleValue = (e) => {
+    if (e.target.classList.contains("icon")) {
+      const newValue = e.target.dataset.label;
+      try {
+        setTitle(newValue);
+        setValue(user[newValue]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+  }
+
+  const addUser = () => {
+    setUserArray([...userArray, user]);
+  }
   return (
-    <div className="App">
+    <div>
 
       <div className='block bcg-orange'>
         <img src={cwSvg} alt="cw" id='cw' />
-       
+
       </div>
       <div className='block'>
         <div className='container'>
-          <img src={(user && user.image ) || defaultImage} className="user-img"/>
+          <img src={(user && user.image) || defaultImage} alt="random user" className="user-img" />
+          <p className='user-title'>My {title}</p>
+          <p className='user-value'>{value}</p>
+          <div className="values-list">
+            <button
+              className='icon'
+              data-label="name"
+              onMouseOver={handleValue}
+
+            >
+              <img src={user?.gender === "male" ? manSvg : womanSvg}
+                alt="user"
+                id="iconImg" />
+            </button>
+
+            <button
+              className='icon'
+              data-label="email"
+              onMouseOver={handleValue}
+
+            >
+              <img src={mailSvg}
+                alt="email"
+                id="iconImg" />
+            </button>
+
+
+            <button
+              className='icon'
+              data-label="age"
+              onMouseOver={handleValue}
+
+            >
+              <img src={user?.gender === "male" ? manAgeSvg : womanAgeSvg}
+                alt="age"
+                id="iconImg" />
+            </button>
+
+            <button
+              className='icon'
+              data-label="street"
+              onMouseOver={handleValue}
+
+            >
+              <img src={mapSvg}
+                alt="street"
+                id="iconImg" />
+            </button>
+
+            <button
+              className='icon'
+              data-label="phone"
+              onMouseOver={handleValue}
+
+            >
+              <img src={phoneSvg}
+                alt="phone"
+                id="iconImg" />
+            </button>
+
+            <button
+              className='icon'
+              data-label="password"
+              onMouseOver={handleValue}
+
+            >
+              <img src={padlockSvg}
+                alt="lock"
+                id="iconImg" />
+            </button>
+
+
+          </div>
+          <div className='btn-group'>
+            <button className='btn' type='button' onClick={getUser}>
+              {loading? "loading" : "new user"}
+            </button>
+            <button className='btn' type='button' onClick={addUser}>
+              add user
+            </button>
+          </div>
+
+          {userArray.length === 0 ? null : (
+            <table className='table'>
+              <thead>
+                <tr className='head-tr'>
+                  <th className='th'>Firtname</th>
+                  <th className='th'>Email</th>
+                  <th className='th'>Phone</th>
+                  <th className='th'>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userArray.map((item,index) =>(
+                  <tr key={index} className="body-tr">
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.age}</td>
+                  </tr>
+                ) )}
+              </tbody>
+            </table>
+          )}
+
+
 
         </div>
 
       </div>
 
 
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Footer />
       </div>
     </div>
